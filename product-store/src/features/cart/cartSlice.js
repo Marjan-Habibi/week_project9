@@ -10,53 +10,53 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart(state, action) {
+    addToCart: (state, action) => {
       const item = action.payload;
-      const existingItem = state.items.find(i => i.id === item.id);
+      const existing = state.items.find(i => i.id === item.id);
 
-      if (existingItem) {
-        existingItem.quantity += 1;
+      state.totalQuantity++;
+
+      if (existing) {
+        existing.quantity++;
       } else {
         state.items.push({ ...item, quantity: 1 });
       }
 
-      state.totalQuantity += 1;
       state.totalPrice += item.price;
     },
 
-    removeFromCart(state, action) {
+    removeFromCart: (state, action) => {
       const id = action.payload;
-      const existingItem = state.items.find(i => i.id === id);
+      const item = state.items.find(i => i.id === id);
 
-      if (!existingItem) return;
+      if (!item) return;
 
-      state.totalQuantity -= existingItem.quantity;
-      state.totalPrice -= existingItem.price * existingItem.quantity;
+      state.totalQuantity -= item.quantity;
+      state.totalPrice -= item.price * item.quantity;
 
       state.items = state.items.filter(i => i.id !== id);
     },
 
-    increaseQty(state, action) {
+    increaseQty: (state, action) => {
+      const item = state.items.find(i => i.id === action.payload);
+      item.quantity++;
+      state.totalQuantity++;
+      state.totalPrice += item.price;
+    },
+
+    decreaseQty: (state, action) => {
       const item = state.items.find(i => i.id === action.payload);
 
-      if (item) {
-        item.quantity += 1;
-        state.totalQuantity += 1;
-        state.totalPrice += item.price;
+      item.quantity--;
+      state.totalQuantity--;
+      state.totalPrice -= item.price;
+
+      if (item.quantity === 0) {
+        state.items = state.items.filter(i => i.id !== item.id);
       }
     },
 
-    decreaseQty(state, action) {
-      const item = state.items.find(i => i.id === action.payload);
-
-      if (item && item.quantity > 1) {
-        item.quantity -= 1;
-        state.totalQuantity -= 1;
-        state.totalPrice -= item.price;
-      }
-    },
-
-    clearCart(state) {
+    clearCart: (state) => {
       state.items = [];
       state.totalQuantity = 0;
       state.totalPrice = 0;

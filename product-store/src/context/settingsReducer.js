@@ -1,6 +1,7 @@
 export const initialState = {
   theme: "light",
   view: "grid",
+  search: "",
 };
 
 export const settingsReducer = (state, action) => {
@@ -11,10 +12,10 @@ export const settingsReducer = (state, action) => {
         theme: state.theme === "light" ? "dark" : "light",
       };
 
-    case "TOGGLE_VIEW":
+    case "SET_SEARCH":
       return {
         ...state,
-        view: state.view === "grid" ? "list" : "grid",
+        search: action.payload,
       };
 
     default:
