@@ -8,10 +8,8 @@ export default function ProductList() {
   const { data, isLoading, error } = useProducts();
   const { state } = useContext(SettingsContext);
 
-  // 🔄 LOADING
   if (isLoading) return <Loader />;
 
-  // ❌ ERROR
   if (error) return (
     <p className="text-center text-red-500 mt-10">
       Error loading products...
@@ -20,14 +18,12 @@ export default function ProductList() {
 
   let filtered = data || [];
 
-  // 🔍 SEARCH FILTER
   if (state.search) {
     filtered = filtered.filter((p) =>
       p.title.toLowerCase().includes(state.search.toLowerCase())
     );
   }
 
-  // 📦 CATEGORY FILTER
   if (state.category) {
     filtered = filtered.filter(
       (p) => p.category === state.category

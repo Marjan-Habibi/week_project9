@@ -1,6 +1,4 @@
 @import "tailwindcss";
-
-/* Keep layout predictable and let Tailwind utilities control the UI */
 * {
   box-sizing: border-box;
 }

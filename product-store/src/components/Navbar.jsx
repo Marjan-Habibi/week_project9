@@ -16,7 +16,7 @@ export default function Navbar() {
   const cart = useSelector((s) => s.cart.totalQuantity);
   const [open, setOpen] = useState(false);
 
-  // ✅ categories (هماهنگ با FakeStore API)
+  //categories 
   const categories = [
     { label: "All", value: "" },
     { label: "Men", value: "men's clothing" },
@@ -34,8 +34,6 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-
-        {/* LOGO */}
         <Link
           to="/"
           className="text-2xl font-bold text-yellow-500 hover:opacity-80 transition"
@@ -43,7 +41,6 @@ export default function Navbar() {
           🛍 Product Store
         </Link>
 
-        {/* DESKTOP CATEGORIES */}
         <div className="hidden md:flex gap-5 text-sm font-medium">
           {categories.map((cat) => (
             <button
@@ -75,10 +72,8 @@ export default function Navbar() {
           <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
         </div>
 
-        {/* RIGHT */}
         <div className="flex items-center gap-5">
 
-          {/* DARK MODE */}
           <button
             onClick={() => dispatch({ type: "TOGGLE_THEME" })}
             className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
@@ -86,7 +81,6 @@ export default function Navbar() {
             {state.theme === "light" ? <Moon /> : <Sun />}
           </button>
 
-          {/* CART */}
           <Link
             to="/cart"
             className="relative hover:scale-110 transition"
