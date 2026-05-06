@@ -8,18 +8,54 @@ export default function ProductList() {
   const { data, isLoading, error } = useProducts();
   const { state } = useContext(SettingsContext);
 
+  // 🔄 LOADING
   if (isLoading) return <Loader />;
-  if (error) return <p>Error...</p>;
 
-  const filtered = data.filter((p) =>
-    p.title.toLowerCase().includes(state.search.toLowerCase())
+  // ❌ ERROR
+  if (error) return (
+    <p className="text-center text-red-500 mt-10">
+      Error loading products...
+    </p>
   );
 
+  let filtered = data || [];
+
+  // 🔍 SEARCH FILTER
+  if (state.search) {
+    filtered = filtered.filter((p) =>
+      p.title.toLowerCase().includes(state.search.toLowerCase())
+    );
+  }
+
+  // 📦 CATEGORY FILTER
+  if (state.category) {
+    filtered = filtered.filter(
+      (p) => p.category === state.category
+    );
+  }
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-6">
-      {filtered.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className="max-w-7xl mx-auto p-6">
+
+      {/* TITLE */}
+      <h1 className="text-3xl font-bold mb-6">
+        Discover Products
+      </h1>
+
+      {/* EMPTY STATE */}
+      {filtered.length === 0 ? (
+        <p className="text-center text-gray-500 mt-10">
+          No products found 😢
+        </p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+          {filtered.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+
+        </div>
+      )}
     </div>
   );
 }

@@ -1,21 +1,28 @@
 export const initialState = {
   theme: "light",
-  view: "grid",
   search: "",
+  category: "",
 };
 
 export const settingsReducer = (state, action) => {
   switch (action.type) {
-    case "TOGGLE_THEME":
+
+    case "SET_CATEGORY":
       return {
         ...state,
-        theme: state.theme === "light" ? "dark" : "light",
+        category: action.payload,
       };
 
     case "SET_SEARCH":
       return {
         ...state,
         search: action.payload,
+      };
+
+    case "TOGGLE_THEME":
+      return {
+        ...state,
+        theme: state.theme === "light" ? "dark" : "light",
       };
 
     default:
