@@ -1,61 +1,54 @@
 import { useDispatch } from "react-redux";
 import { addToCart } from "../features/cart/cartSlice";
-import { Link } from "react-router-dom";
-import { ShoppingCart, Star } from "lucide-react";
-import toast from "react-hot-toast";
+import { useContext } from "react";
+import { SettingsContext } from "../context/SettingsContext";
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
+  const { state } = useContext(SettingsContext);
 
   return (
-    <div className="group bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-md 
-    hover:shadow-2xl transition duration-300 hover:-translate-y-1 relative overflow-hidden">
-
-      <Link to={`/product/${product.id}`}>
-        <div className="h-44 flex items-center justify-center overflow-hidden">
-          <img
-            src={product.image}
-            className="h-full object-contain group-hover:scale-110 transition duration-300"
-          />
-        </div>
-      </Link>
-
-      <span className="absolute top-2 left-2 bg-yellow-400 text-xs px-2 py-1 rounded-full">
+    <div
+      className={`rounded-2xl p-4 shadow-lg transition hover:scale-[1.02] hover:shadow-2xl ${
+        state.theme === "dark"
+          ? "bg-gray-800 text-white"
+          : "bg-white text-black"
+      }`}
+    >
+      {/* CATEGORY */}
+      <span className="bg-yellow-400 text-black text-xs px-3 py-1 rounded-full">
         {product.category}
       </span>
 
-      <Link to={`/product/${product.id}`}>
-        <h2 className="mt-3 text-sm font-semibold line-clamp-2 hover:text-yellow-500 transition">
-          {product.title}
-        </h2>
-      </Link>
+      {/* IMAGE */}
+      <img
+        src={product.image}
+        alt={product.title}
+        className="h-44 mx-auto object-contain mt-4"
+      />
 
-      <div className="flex items-center gap-1 mt-1 text-yellow-500">
-        <Star size={14} />
-        <span className="text-xs text-gray-500">
-          {product.rating?.rate || 4.5}
-        </span>
-      </div>
+      {/* TITLE */}
+      <h2 className="mt-4 font-semibold line-clamp-2 min-h-[50px]">
+        {product.title}
+      </h2>
+
+      {/* RATING */}
+      <p className="text-sm text-yellow-500 mt-1">
+        ⭐ {product.rating?.rate}
+      </p>
 
       {/* PRICE */}
-      <p className="text-yellow-500 font-bold text-lg mt-2">
+      <p className="text-2xl font-bold text-yellow-400 mt-2">
         ${product.price}
       </p>
 
       {/* BUTTON */}
       <button
-        onClick={() => {
-          dispatch(addToCart(product));
-          toast.success("Added to cart 🛒");
-        }}
-        className="mt-3 w-full flex items-center justify-center gap-2 
-        bg-yellow-400 hover:bg-yellow-500 active:scale-95 
-        transition py-2 rounded-xl shadow-md hover:shadow-lg"
+        onClick={() => dispatch(addToCart(product))}
+        className="mt-4 w-full bg-yellow-400 hover:bg-yellow-500 text-black py-3 rounded-xl font-medium transition duration-300"
       >
-        <ShoppingCart size={18} />
-        Add to Cart
+        🛒 Add to Cart
       </button>
-
     </div>
   );
 }
