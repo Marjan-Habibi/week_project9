@@ -1,16 +1,137 @@
-# React + Vite
+# Product Store App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React Product Store application built for Week 9 Assignment using:
 
-Currently, two official plugins are available:
+* Context API + useReducer
+* Redux Toolkit
+* React Query
+* Tailwind CSS
+* React Router
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+# Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Product listing from API
+* Search products
+* Filter by category
+* Dark / Light mode
+* Shopping cart with Redux Toolkit
+* Add to cart
+* Remove from cart
+* Increase / decrease quantity
+* Total items and total price
+* Product details page
+* Responsive design
+* Modern UI/UX
+* Loading skeleton animation
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Technologies Used
+
+* React
+* Vite
+* Tailwind CSS
+* Redux Toolkit
+* React Redux
+* React Query
+* React Router DOM
+* Axios
+* Lucide React
+
+---
+
+# Project Structure
+
+```bash
+src/
+│
+├── app/
+├── components/
+├── context/
+├── features/
+├── hooks/
+├── pages/
+├── routes/
+├── services/
+└── main.jsx
+```
+
+---
+
+# Installation
+
+Clone the repository:
+
+```bash
+git clone YOUR_GITHUB_LINK
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the project:
+
+```bash
+npm run dev
+```
+
+---
+
+# Screenshots
+
+## Home Page
+
+![Home](./screenshots/home.png)
+
+---
+
+## Dark Mode
+
+![Dark Mode](./screenshots/darkmode.png)
+
+---
+
+## Shopping Cart
+
+![Cart](./screenshots/cart.png)
+
+---
+
+## Product Details
+
+![Details](./screenshots/details.png)
+
+---
+
+# Assignment Concepts Covered
+
+## Context API + useReducer
+
+* Theme management
+* Search state
+* Category filtering
+
+## Redux Toolkit
+
+* Cart state management
+* Quantity control
+* Total price calculation
+
+## React Query
+
+* Product fetching
+* Loading states
+* Error handling
+* Cached API data
+
+---
+
+# Developed By
+
+Marjan Habibi
+Frontend Developer | UI Designer
