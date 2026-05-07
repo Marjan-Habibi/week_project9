@@ -15,39 +15,35 @@ export default function ProductCard({ product }) {
           : "bg-white text-black"
       }`}
     >
-      {/* CATEGORY */}
       <span className="bg-yellow-400 text-black text-xs px-3 py-1 rounded-full">
         {product.category}
       </span>
 
-      {/* IMAGE */}
       <img
         src={product.image}
         alt={product.title}
         className="h-44 mx-auto object-contain mt-4"
       />
 
-      {/* TITLE */}
       <h2 className="mt-4 font-semibold line-clamp-2 min-h-[50px]">
         {product.title}
       </h2>
 
-      {/* RATING */}
+
       <p className="text-sm text-yellow-500 mt-1">
         ⭐ {product.rating?.rate}
       </p>
 
-      {/* PRICE */}
       <p className="text-2xl font-bold text-yellow-400 mt-2">
         ${product.price}
       </p>
 
-      {/* BUTTON */}
+     
       <button
         onClick={() => dispatch(addToCart(product))}
         className="mt-4 w-full bg-yellow-400 hover:bg-yellow-500 text-black py-3 rounded-xl font-medium transition duration-300"
       >
-        🛒 Add to Cart
+  
       </button>
     </div>
   );
